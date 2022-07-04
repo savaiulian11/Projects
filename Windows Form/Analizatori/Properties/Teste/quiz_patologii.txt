@@ -1,0 +1,59 @@
+Ce este herpesul?
+3
+boală a pielii și a mucoaselor
+boală a analizatorului vizual
+boală a analizatorului vestibular
+boală a pielii și a mucoaselor
+Cauzele producerii herpesului sunt:
+4
+lovituri
+diabet
+virale
+intoxicații
+virale
+Cum se mai numește glaucomul?
+3
+pată neagră
+pată albă
+apa neagră
+apa neagră
+Cauzele producerii conjunctivitei sunt:
+4
+infecție virală
+lovituri
+diabet
+vârsta înaintată
+infecție virală
+Cauzele producerii otitei sunt:
+3
+infecție virală
+lovituri
+micotice, bacteriene și virale
+micotice, bacteriene și virale
+Simptomele provocate de otita medie sunt:
+3
+eczemă acută sau cronică
+eczemă acută sau cronică și scăderea auzului
+durere și stare general proastă
+durere și stare general proastă
+Cauzele producerii glaucomului sunt:
+5
+ereditare
+infecții virale
+lovituri
+intoxicații
+congenitale
+ereditare
+Simptomele provocate de otita externă sunt:
+3
+eczemă acută sau cronică
+febră,frisoane
+scăderea auzului
+eczemă acută sau cronică
+Simptomele provocate de conjunctivită sunt:
+4
+mâncarimi oculare
+dureri de cap violente
+roșeața în ochi
+scăderea vederii pâna la pierderea ei
+mâncarimi oculare

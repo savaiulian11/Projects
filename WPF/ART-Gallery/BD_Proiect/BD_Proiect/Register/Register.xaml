@@ -1,0 +1,65 @@
+﻿<Window x:Name="RegisterPage1" x:Class="BD_Proiect.Register"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BD_Proiect"
+        mc:Ignorable="d"
+        Title="Register" 
+        Height="540" 
+        Width="285" 
+        HorizontalContentAlignment="Center" 
+        VerticalContentAlignment="Center" 
+        ResizeMode="NoResize" 
+        Background="White" 
+        Foreground="#FFA4A5A9" 
+        FontFamily="Nirmala UI" 
+        IsHitTestVisible="True" 
+        FontWeight="Bold" 
+        FontSize="10" 
+        IsManipulationEnabled="True" 
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Closed="RegisterPage1_Closed">
+    <Grid x:Name="RegisterPage" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,24,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="131*"/>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="GetStarted" Content="Get Started" Margin="0,0,18,0" VerticalAlignment="Top" Foreground="#FF7456AE" FontFamily="MS UI Gothic" FontSize="20"/>
+        <Label x:Name="labelUsername" Content="Username" HorizontalAlignment="Left" Margin="3,44,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Margin="5,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" Height="28" HorizontalContentAlignment="Left" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Normal" Background="#FFE6E7E9" BorderThickness="0,0,0,0" Grid.ColumnSpan="2"/>
+        <Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="0,100,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="labelConfirmPassword" Content="Confirm Password" HorizontalAlignment="Left" Margin="0,156,0,0" VerticalAlignment="Top">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <CheckBox x:Name="checkbxShowPassword" Content="Show Password" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="4,0,0,0" BorderThickness="1,1,1,1" Cursor="Hand" Checked="checkbxShowPassword_Checked" Grid.Column="1" Unchecked="checkbxShowPassword_Unchecked" Margin="0,268,0,0">
+            <CheckBox.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}"/>
+            </CheckBox.Foreground>
+        </CheckBox>
+        <Button x:Name="registerButton" Content="REGISTER" HorizontalAlignment="Left" Margin="21,319,0,0" VerticalAlignment="Top" Width="216" Height="35" Foreground="White" Cursor="Hand" Background="#FF7456AE" BorderThickness="0,0,0,0" Grid.ColumnSpan="2" Click="Button_Click_2"/>
+        <Button Content="CLEAR" HorizontalAlignment="Left" Margin="21,359,0,0" VerticalAlignment="Top" Width="216" Height="35" Foreground="#FF7456AE" Cursor="Hand" Background="White" BorderThickness="1,1,1,1" Grid.ColumnSpan="2" Click="Button_Click_1"/>
+        <Label Content="Already have an Account?" HorizontalAlignment="Center" Margin="0,407,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="labelBackToLogin" Content="Back to LOGIN" HorizontalAlignment="Center" Margin="0,435,0,0" VerticalAlignment="Top" Foreground="#FF7456AE" Cursor="Hand" Grid.ColumnSpan="2" MouseLeftButtonUp="BackToLogin_MouseLeftButtonUp"/>
+        <TextBox x:Name="txtPassword" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="5,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="28" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Normal" Background="#FFE6E7E9" BorderThickness="0,0,0,0"/>
+        <TextBox x:Name="txtConfirmPassword" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="6,179,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="232" Height="28" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Normal" Background="#FFE6E7E9" BorderThickness="0,0,0,0"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Margin="5,123,0,0" VerticalAlignment="Top" Width="233" Height="28" HorizontalContentAlignment="Left" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Normal" Background="#FFE6E7E9" BorderThickness="0,0,0,0" Grid.ColumnSpan="2"/>
+        <PasswordBox x:Name="confirmPasswordBox" HorizontalAlignment="Left" Margin="5,179,0,0" VerticalAlignment="Top" Width="233" Height="28" HorizontalContentAlignment="Left" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Normal" Background="#FFE6E7E9" BorderThickness="0,0,0,0" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

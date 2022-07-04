@@ -1,0 +1,37 @@
+--KUBE1 && KUBE2--
+sudo su
+sudo snap install microk8s --classic --channel=1.21
+sudo usermod -a -G microk8s $USER
+sudo chown -f -R $USER ~/.kube
+su - $USER
+microk8s status --wait-ready
+alias kubectl='microk8s kubectl'
+microk8s enable dns storage
+
+--KUBE1--
+microk8s enable dns
+microk8s enable metrics-server prometheus
+microk8s enable dashboard
+token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
+microk8s kubectl -n kube-system describe secret $token
+microk8s enable storage
+microk8s enable registry
+sudo apt-get update
+sudo apt-get install docker.io
+
+sudo usermod -aG docker ${USER}
+alias kubectl='microk8s kubectl'
+sudo vim /etc/docker/daemon.json
+{
+ "insecure-registries" : ["localhost:32000"]
+}
+sudo systemctl restart docker
+
+--CHAT + DRUPAL--
+docker build -t localhost:32000/apache .
+docker push localhost:32000/apache
+
+kubectl apply -f volume.yaml
+kubectl apply -f all.yaml
+
+kubectl delete -f all.yaml

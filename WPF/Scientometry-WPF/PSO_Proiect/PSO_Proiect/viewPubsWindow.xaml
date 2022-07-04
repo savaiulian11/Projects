@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="PSO_Proiect.viewPubsWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PSO_Proiect"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <Grid Background="Gray">
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Center">
+            <StackPanel Margin="0,0,5,0"  
+                        VerticalAlignment="Top"/>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Tip Publicatie" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox x:Name="tipPublicatieComboBox" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150" SelectionChanged="tipPublicatieComboBox_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="An" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox x:Name="anComboBox" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150" SelectionChanged="anComboBox_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Margin="0,0,5,0" 
+                        VerticalAlignment="Top">
+                <TextBlock HorizontalAlignment="Left" 
+                           TextAlignment="Center" 
+                           TextWrapping="Wrap" 
+                           Text="Autor" 
+                           VerticalAlignment="Top"
+                           Width="150" 
+                           Height="24" 
+                           FontSize="15"/>
+                <ComboBox x:Name="autorComboBox" HorizontalAlignment="Left"
+                          VerticalAlignment="Top"
+                          Width="150" SelectionChanged="autorComboBox_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Top"/>
+        </StackPanel>
+        <DataGrid x:Name="pubsDataGrid" 
+                  Margin="15,60,128,15"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False">
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="deleteRecord"
+                                Header="Delete"
+                                Click="deleteRecord_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+            <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="columnArticol" Header="Articol" Binding="{Binding Nume}"/>
+                    <DataGridTextColumn x:Name="columnTipPublicatie"  Header="TipPublicatie" Binding="{Binding TipPublicatie}"/>
+                    <DataGridTextColumn x:Name="columnAn"  Header="An" Binding="{Binding An}"/>
+                    <DataGridTextColumn x:Name="columnAutor"  Header="Autor" Binding="{Binding Autor}"/>
+                </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Right"
+                    Margin="0,60,13,15">
+            <Button x:Name="ResetButton" 
+                    Margin="0,0,0,5"
+                    Content="Reset"
+                    Width="100"
+                    Height="40"
+                    Click="ResetButton_Click"/>
+            <Button x:Name="ManualButton" 
+                    Content="Adaugare&#xA;manuală"
+                    Margin="0,0,0,5"
+                    Width="100" 
+                    Height="40" 
+                    Click="ManualButton_Click"/>
+            <Button x:Name="BibTextButton"
+                    Margin="0,0,0,120"
+                    Content="Adăugare&#xA;BibText"
+                    Width="100"
+                    Height="40"
+                    Click="BibTextButton_Click"/>
+            <Button x:Name="authorsButton"
+                    Margin="0,0,0,5"
+                    Content="Autori" 
+                    Width="100"
+                    Height="40"
+                    Click="authorsButton_Click"/>
+            <Button x:Name="exitButton"
+                    Content="Exit" 
+                    Width="100"
+                    Height="40"
+                    Click="exitButton_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

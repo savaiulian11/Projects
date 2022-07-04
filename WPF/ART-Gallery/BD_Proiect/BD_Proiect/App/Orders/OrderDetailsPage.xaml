@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="BD_Proiect.Orders.OrderDetailsPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BD_Proiect.Orders"
+             mc:Ignorable="d" 
+             d:DesignHeight="473.04" d:DesignWidth="647">
+    <Grid Background="White">
+        <Button x:Name="acceptButton" Content="ACCEPT" HorizontalAlignment="Left" Margin="35,373,0,0" VerticalAlignment="Top" Height="50" Width="284" Background="#FF7456AE" BorderThickness="1,1,0,0" Cursor="Hand" FontFamily="Nirmala UI" FontWeight="Bold" Foreground="White"/>
+        <Button x:Name="declineButton" Content="DECLINE" HorizontalAlignment="Left" Margin="329,373,0,0" VerticalAlignment="Top" Height="50" Width="284" BorderThickness="0,0,1,1" Cursor="Hand" Background="White" Foreground="#FF7456AE" FontFamily="Nirmala UI" FontWeight="Bold" Click="declineButton_Click"/>
+        <Label x:Name="operaAfisajLabel" Content="Opera:" HorizontalAlignment="Left" Margin="73,70,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="numeLabel" Content="First Name:" HorizontalAlignment="Left" Margin="328,121,0,0" VerticalAlignment="Top" FontSize="16" FontFamily="MS UI Gothic" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="prenumeLabel" Content="Second Name:" HorizontalAlignment="Left" Margin="328,152,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="orderDetailsLabel" Content="Order Details" HorizontalAlignment="Left" Margin="49,31,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="24" Foreground="#FF7456AE" FontWeight="Bold"/>
+        <Label x:Name="telefonLabel" Content="Phone:" HorizontalAlignment="Left" Margin="329,183,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.513,0.09">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="addressLabel" Content="Address:" HorizontalAlignment="Left" Margin="328,214,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold" RenderTransformOrigin="0.452,0.577">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="locLabel" Content="Locality:" HorizontalAlignment="Left" Margin="328,245,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <TextBox x:Name="numeTextBox" HorizontalAlignment="Left" Margin="457,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="prenumeTextBox" HorizontalAlignment="Left" Margin="457,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="telefonTextBox" HorizontalAlignment="Left" Margin="457,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="addressTextBox" HorizontalAlignment="Left" Margin="457,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <TextBox x:Name="locTextBox" HorizontalAlignment="Left" Margin="457,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderThickness="0,0,0,1"/>
+        <Image x:Name="ImageGrid" HorizontalAlignment="Left" Height="214" Margin="49,96,0,0" VerticalAlignment="Top" Width="190" Source="{Binding ImageURL}"/>
+        <Rectangle HorizontalAlignment="Left" Height="183" Margin="313,109,0,0" Stroke="Black" VerticalAlignment="Top" Width="294"/>
+        <Label x:Name="PretAfisajLabel" Content="Pret:&#xD;&#xA;" HorizontalAlignment="Left" Margin="85,296,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="numeOLabel" 
+               Content="Nume"
+               HorizontalAlignment="Left"
+               Margin="131,70,0,0"
+               VerticalAlignment="Top" 
+               FontFamily="MS UI Gothic"
+               FontSize="16" 
+               FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+        <Label x:Name="pretLabel" Content="Pret" HorizontalAlignment="Left" Margin="131,298,0,0" VerticalAlignment="Top" FontFamily="MS UI Gothic" FontSize="16" FontWeight="Bold">
+            <Label.Foreground>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlDarkDarkColorKey}}"/>
+            </Label.Foreground>
+        </Label>
+
+    </Grid>
+</UserControl>

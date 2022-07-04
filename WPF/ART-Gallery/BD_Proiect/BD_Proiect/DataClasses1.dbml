@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BD_Proiect" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=BD_Proiect;Integrated Security=True" SettingsObjectName="BD_Proiect.Properties.Settings" SettingsPropertyName="BD_ProiectConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Angajati" Member="Angajatis">
+    <Type Name="Angajati">
+      <Column Name="ID_Angajat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CNP" Type="System.String" DbType="Char(13) NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Nastere" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="[Salariu(Brut)]" Member="Salariu_Brut_" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Lider" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Angajati_Functii_Angajati" Member="Functii_Angajatis" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Functii_Angajati" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Autor" Member="Autors">
+    <Type Name="Autor">
+      <Column Name="ID_Autor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Nastere" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Autor_Opere_De_Arta" Member="Opere_De_Artas" ThisKey="ID_Autor" OtherKey="ID_Autor" Type="Opere_De_Arta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Clienti" Member="Clientis">
+    <Type Name="Clienti">
+      <Column Name="ID_Client" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Prenume" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Numar_Telefon" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Adresa" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Localitate" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Clienti_Comenzi" Member="Comenzis" ThisKey="ID_Client" OtherKey="ID_Client" Type="Comenzi" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comenzi" Member="Comenzis">
+    <Type Name="Comenzi">
+      <Column Name="ID_Comanda" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Client" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Plasare" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Livrare" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ID_User" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Comenzi_Comenzi_Opere_De_Arta" Member="Comenzi_Opere_De_Artas" ThisKey="ID_Comanda" OtherKey="ID_Comenzi" Type="Comenzi_Opere_De_Arta" />
+      <Association Name="Clienti_Comenzi" Member="Clienti" ThisKey="ID_Client" OtherKey="ID_Client" Type="Clienti" IsForeignKey="true" />
+      <Association Name="User_Comenzi" Member="User" ThisKey="ID_User" OtherKey="ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Comenzi_Opere_De_Arta" Member="Comenzi_Opere_De_Artas">
+    <Type Name="Comenzi_Opere_De_Arta">
+      <Column Name="ID_Opera" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Comenzi" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Comenzi_Comenzi_Opere_De_Arta" Member="Comenzi" ThisKey="ID_Comenzi" OtherKey="ID_Comanda" Type="Comenzi" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Opere_De_Arta_Comenzi_Opere_De_Arta" Member="Opere_De_Arta" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Opere_De_Arta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departamente" Member="Departamentes">
+    <Type Name="Departamente">
+      <Column Name="ID_Departament" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nume_Departament" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Departamente_Functii" Member="Functiis" ThisKey="ID_Departament" OtherKey="ID_Departatemt" Type="Functii" />
+      <Association Name="Departamente_Galerii_Departamente" Member="Galerii_Departamentes" ThisKey="ID_Departament" OtherKey="ID_Departament" Type="Galerii_Departamente" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Depozit" Member="Depozits">
+    <Type Name="Depozit">
+      <Column Name="ID_Depozit" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Adresa" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Localitate" Type="System.String" DbType="NChar(40) NOT NULL" CanBeNull="false" />
+      <Column Name="Cod_Postal" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Depozit_Depozite_Opere" Member="Depozite_Operes" ThisKey="ID_Depozit" OtherKey="ID_Depozit" Type="Depozite_Opere" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Depozite_Opere" Member="Depozite_Operes">
+    <Type Name="Depozite_Opere">
+      <Column Name="ID_Depozit" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Opera" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Numar" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Depozit_Depozite_Opere" Member="Depozit" ThisKey="ID_Depozit" OtherKey="ID_Depozit" Type="Depozit" IsForeignKey="true" />
+      <Association Name="Opere_De_Arta_Depozite_Opere" Member="Opere_De_Arta" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Opere_De_Arta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Expozitie" Member="Expozities">
+    <Type Name="Expozitie">
+      <Column Name="ID_Expozitie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Galerie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nume_Expozitie" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Inceput" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Sfarsit" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Expozitie_Expozitii_Opere_De_Arta" Member="Expozitii_Opere_De_Artas" ThisKey="ID_Expozitie" OtherKey="ID_Expozitie" Type="Expozitii_Opere_De_Arta" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Functii" Member="Functiis">
+    <Type Name="Functii">
+      <Column Name="ID_Functie" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Departatemt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Denumire" Type="System.String" DbType="NChar(20) NOT NULL" CanBeNull="false" />
+      <Association Name="Functii_Functii_Angajati" Member="Functii_Angajatis" ThisKey="ID_Functie" OtherKey="ID_Functie" Type="Functii_Angajati" />
+      <Association Name="Departamente_Functii" Member="Departamente" ThisKey="ID_Departatemt" OtherKey="ID_Departament" Type="Departamente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Expozitii_Opere_De_Arta" Member="Expozitii_Opere_De_Artas">
+    <Type Name="Expozitii_Opere_De_Arta">
+      <Column Name="ID_Expozitie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Opera" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Expozitie_Expozitii_Opere_De_Arta" Member="Expozitie" ThisKey="ID_Expozitie" OtherKey="ID_Expozitie" Type="Expozitie" IsForeignKey="true" />
+      <Association Name="Opere_De_Arta_Expozitii_Opere_De_Arta" Member="Opere_De_Arta" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Opere_De_Arta" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Functii_Angajati" Member="Functii_Angajatis">
+    <Type Name="Functii_Angajati">
+      <Column Name="ID_Functie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Angajat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Inceput" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="Data_Sfarsit" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="Angajati_Functii_Angajati" Member="Angajati" ThisKey="ID_Angajat" OtherKey="ID_Angajat" Type="Angajati" IsForeignKey="true" />
+      <Association Name="Functii_Functii_Angajati" Member="Functii" ThisKey="ID_Functie" OtherKey="ID_Functie" Type="Functii" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Galerii_Departamente" Member="Galerii_Departamentes">
+    <Type Name="Galerii_Departamente">
+      <Column Name="ID_Departament" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_Galerie" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Departamente_Galerii_Departamente" Member="Departamente" ThisKey="ID_Departament" OtherKey="ID_Departament" Type="Departamente" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Opere_De_Arta" Member="Opere_De_Artas">
+    <Type Name="Opere_De_Arta">
+      <Column Name="ID_Opera" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_Autor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nume" Type="System.String" DbType="NChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="An" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="[Pret(RON)]" Member="Pret_RON_" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Detalii" Type="System.String" DbType="NChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="ImageURL" Type="System.String" DbType="NChar(150)" CanBeNull="true" />
+      <Association Name="Opere_De_Arta_Comenzi_Opere_De_Arta" Member="Comenzi_Opere_De_Artas" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Comenzi_Opere_De_Arta" />
+      <Association Name="Opere_De_Arta_Depozite_Opere" Member="Depozite_Operes" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Depozite_Opere" />
+      <Association Name="Opere_De_Arta_Expozitii_Opere_De_Arta" Member="Expozitii_Opere_De_Artas" ThisKey="ID_Opera" OtherKey="ID_Opera" Type="Expozitii_Opere_De_Arta" />
+      <Association Name="Autor_Opere_De_Arta" Member="Autor" ThisKey="ID_Autor" OtherKey="ID_Autor" Type="Autor" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="UserType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CNP" Type="System.String" DbType="Char(13)" CanBeNull="true" />
+      <Association Name="User_Comenzi" Member="Comenzis" ThisKey="ID" OtherKey="ID_User" Type="Comenzi" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,215 @@
+# Apache Database + Site
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresapache
+  labels:
+    app: postgres
+spec:
+  externalIPs:
+    - 10.0.0.4
+  ports:
+    - port: 5432
+  selector:
+    app: postgres
+    tier: postgreSQL
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresapache
+  labels:
+    app: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres
+        tier: postgreSQL
+    spec:
+      containers:
+        - image: postgres:9.6.2-alpine
+          name: postgresapache
+          env:
+            - name: POSTGRES_USER
+              value: apache
+            - name: POSTGRES_PASSWORD
+              value: apache
+            - name: POSTGRES_DB
+              value: apache
+          ports:
+            - containerPort: 5432
+              name: postgresapache
+          volumeMounts:
+            - name: postgresapache
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgresapache
+          persistentVolumeClaim:
+            claimName: postgres-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache
+  labels:
+    app: apache
+spec:
+  externalIPs:
+    - 10.0.0.4
+  ports:
+    - port: 88
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: apache
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apache
+  name: apache
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: apache
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+        - image: localhost:32000/apache
+          name: apache
+          resources: {}
+status: {}
+# Drupal Site + Database
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-mysql-service
+spec:
+  ports:
+    - name: mysql
+      port: 3306
+      protocol: TCP
+  selector:
+    app: drupal-mysql
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: drupal-mysql
+spec:
+  selector:
+    matchLabels:
+      app: drupal-mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: drupal-mysql
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: drupal
+            - name: MYSQL_DATABASE
+              value: drupal
+          image: "mysql:5.7"
+          name: cont-drupal-mysql
+          ports:
+            - containerPort: 3306
+              name: mysql
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: vol-drupal
+              subPath: dbdata
+      volumes:
+        - name: vol-drupal
+          persistentVolumeClaim:
+            claimName: drupal-pvc-mysql
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: drupal-service
+  labels:
+    app: drupal-service
+spec:
+  externalIPs:
+    - 10.0.0.4
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: drupal
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: drupal
+  name: drupal
+spec:
+  selector:
+    matchLabels:
+      app: drupal
+  replicas: 5
+  template:
+    metadata:
+      labels:
+        app: drupal
+    spec:
+      initContainers:
+        - name: init-sites-volume
+          image: drupal:8.6
+          command: ["/bin/bash", "-c"]
+          args:
+            [
+              "cp -r /var/www/html/sites/ /data/; chown www-data:www-data /data/ -R",
+            ]
+          volumeMounts:
+            - mountPath: /data
+              name: vol-drupal
+      containers:
+        - image: drupal:latest
+          name: drupal
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html/modules
+              name: vol-drupal
+              subPath: modules
+            - mountPath: /var/www/html/profiles
+              name: vol-drupal
+              subPath: profiles
+            - mountPath: /var/www/html/sites
+              name: vol-drupal
+              subPath: sites
+            - mountPath: /var/www/html/themes
+              name: vol-drupal
+              subPath: themes
+      volumes:
+        - name: vol-drupal
+          persistentVolumeClaim:
+            claimName: drupal-pvc
+---
+
