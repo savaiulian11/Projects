@@ -1,0 +1,60 @@
+<div id="body" class="container">
+  <h1>Scientometry MTA</h1>
+  <h2>Register yourself</h2>
+  <form [formGroup]="myForm">
+    <div class="form-group">
+      <label for="usernameInput">Username</label>
+      <input
+        type="username"
+        class="form-control"
+        id="usernameInput"
+        formControlName="usernameInput"
+        aria-describedby="usernameHelp"
+        placeholder="Username"
+      />
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="passwordInput"
+        formControlName="passwordInput"
+        placeholder="Password"
+      />
+      <small id="passwordHelp" class="form-text text-muted"
+        >Your password needs to have minimum 15 characters and contain a capital
+        letter and minimum one number.</small
+      >
+    </div>
+    <div class="form-group">
+      <label for="RpasswordInput">Repeat password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="RpasswordInput"
+        formControlName="RpasswordInput"
+        placeholder="Password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="emailInput"
+        formControlName="emailInput"
+        aria-describedby="emailHelp"
+        placeholder="Please insert your email"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      (click)="addUser()"
+      routerLinkActive="active"
+    >
+      Submit
+    </button>
+  </form>
+</div>

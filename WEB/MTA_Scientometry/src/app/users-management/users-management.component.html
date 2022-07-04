@@ -1,0 +1,93 @@
+<div class="container">
+  <h1>Author requests</h1>
+  <table class="table" style="text-align: center" *ngIf="authors.length != 0">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Index</th>
+        <th scope="col">Nume</th>
+        <th scope="col">UEFID</th>
+        <th scope="col">Link</th>
+        <th scope="col">Details</th>
+        <th scope="col">Action</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tr *ngFor="let item of authors; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ item.nume }} {{ item.prenume }}</td>
+      <td>{{ item.uefid }}</td>
+      <td>{{ item.link }}</td>
+      <td>{{ item.details }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="acceptRequest(item, i)"
+        >
+          Accept
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          (click)="rejectRequest(item, i)"
+        >
+          Decline
+        </button>
+      </td>
+    </tr>
+  </table>
+  <br />
+  <h1>Users</h1>
+  <form class="form-inline my-2 my-lg-0">
+    <input
+      class="form-control mr-sm-2"
+      type="search"
+      id="searchInput"
+      placeholder="Username"
+      aria-label="Search"
+    />
+    <button
+      class="btn btn-primary my-2 my-sm-0"
+      type="button"
+      aria-expanded="true"
+      (click)="search()"
+    >
+      Search
+    </button>
+  </form>
+  <br />
+  <div class="container bg-light">
+    <table
+      class="table table-striped"
+      style="text-align: center"
+      *ngIf="users.length != 0"
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Index</th>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let item of users; index as i">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{ item.username }}</td>
+        <td>{{ item.email }}</td>
+        <td>
+          <div>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deleteUser(item, i)"
+            >
+              Delete Account
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

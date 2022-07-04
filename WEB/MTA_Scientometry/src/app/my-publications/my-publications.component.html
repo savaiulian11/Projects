@@ -1,0 +1,39 @@
+<div class="container">
+  <br />
+  <div class="myElements">
+    <h1>My Pubblications</h1>
+    <button
+      type="button"
+      class="btn btn-primary btn-circle btn-xl"
+      routerLink="/article/create/new"
+      routerLinkActive="active"
+    >
+      +
+    </button>
+  </div>
+
+  <br />
+  <table class="table table-striped" style="text-align: center">
+    <tr>
+      <td>Index</td>
+      <td>Title</td>
+      <td>Action</td>
+    </tr>
+    <tr *ngFor="let articol of articole; index as i">
+      <td>{{ i + 1 }}</td>
+      <td>{{ articol.value }}</td>
+      <td>
+        <div>
+          <button
+            type="button"
+            class="btn btn-primary"
+            routerLink="/article/update/{{ articol.key }}"
+            routerLinkActive="active"
+          >
+            Administration
+          </button>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

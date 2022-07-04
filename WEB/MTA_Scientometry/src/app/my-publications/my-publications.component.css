@@ -1,0 +1,15 @@
+.myElements {
+  display: flex;
+}
+button {
+  margin-left: 15px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.grid-item {
+  text-align: center;
+}

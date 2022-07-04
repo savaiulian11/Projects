@@ -1,0 +1,88 @@
+<div id="body" class="container">
+  <h1>Scientometry MTA</h1>
+  <h2>Forgot password</h2>
+  <div id="subContainer" class="container">
+    <form [formGroup]="emailForm">
+      <div class="form-group">
+        <label for="emailInput"><strong>Email</strong></label>
+        <input
+          type="email"
+          class="form-control"
+          formControlName="email"
+          id="emailInput"
+          placeholder="Please insert your email"
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        id="sendEmailButton"
+        (click)="sendRequest()"
+      >
+        Send
+      </button>
+      <p *ngIf="this.sent">
+        Your email has been sent! It may take a few minutes, please be patient.
+      </p>
+    </form>
+    <br />
+    <div class="row">
+      <div class="col">
+        <div *ngIf="this.sent == 1">
+          <form [formGroup]="myForm">
+            <div class="form-group" class="formm">
+              <label for="numbers"><strong>Insert your code:</strong></label>
+              <div class="numbers">
+                <input
+                  id="first"
+                  type="text"
+                  class="form-control"
+                  formControlName="mycode"
+                  [maxlength]="6"
+                />
+              </div>
+            </div>
+            <br />
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="verifyCode()"
+              id="verifyCodeButton"
+            >
+              Verify
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="col">
+        <div *ngIf="this.verified == 1">
+          <form [formGroup]="passwordForm">
+            <div class="form-group">
+              <label for="pwd">New Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="nPassword"
+              />
+            </div>
+            <div class="form-group">
+              <label for="pwd">Repeat Password:</label>
+              <input
+                type="password"
+                class="form-control"
+                formControlName="rPassword"
+              />
+            </div>
+            <button
+              type="submit"
+              class="btn btn-default"
+              (click)="changePassword()"
+            >
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

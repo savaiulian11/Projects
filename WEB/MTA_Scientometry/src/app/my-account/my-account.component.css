@@ -1,0 +1,35 @@
+* {
+  font-family: sans-serif;
+}
+
+#body {
+  background-color: #f2f4fa;
+  height: 80vw;
+}
+
+h1,
+h2 {
+  color: #2c2c2c;
+  text-align: center;
+}
+h1 {
+  font-weight: bold;
+}
+
+.navbar-brand {
+  color: #2c2c2c;
+  font-size: 3.5vw;
+  letter-spacing: 0.05em;
+  text-shadow: 4px 4px 0px #d5d5d5, 7px 7px 0px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2),
+    0px 0.5px 1.5px rgba(254, 26, 26, 0.25),
+    0px 0px 0px 3.5px rgba(244, 16, 16, 0.5);
+  outline: 0;
+}
+
+.inLine-elements {
+  display: flex;
+}

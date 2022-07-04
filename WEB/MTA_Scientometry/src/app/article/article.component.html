@@ -1,0 +1,405 @@
+<script>
+  src = "js/jquery-1.11.2.min.js";
+</script>
+<script>
+  src = "./node_modules/bootstrap/dist/css/bootstrap.min.css";
+</script>
+
+<div id="body" class="container">
+  <ul class="nav">
+    <li class="nav-item">
+      <a (click)="backButton()" routerLink="none" class="nav-link">Back</a>
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="this.action == 'create'"
+        class="nav-link"
+        routerLink=""
+        (click)="createArticle()"
+        >Create</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="this.action == 'update'"
+        class="nav-link"
+        routerLink="/article/update/{{ id }}"
+        (click)="updateArticle()"
+        >Update</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        *ngIf="this.action == 'update'"
+        class="nav-link"
+        routerLink=""
+        (click)="deleteArticle()"
+        >Delete</a
+      >
+    </li>
+  </ul>
+
+  <form>
+    <div class="list-group">
+      <a
+        class="list-group-item list-group-item-action list-group-item-secondary"
+        ><div class="form-group row">
+          <label for="nume" class="col-sm-2 col-form-label"
+            ><strong>Titlu:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              id="nume"
+              type="text"
+              [disabled]="this.action == 'view'"
+              class="form-control-plaintext"
+              value="{{ articol.nume }}"
+            />
+          </div></div
+      ></a>
+
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="modPrezentare" class="col-sm-2 col-form-label"
+            ><strong>Mod prezentare:</strong></label
+          >
+          <div class="col-sm-10">
+            <select
+              *ngIf="this.action == 'create' || this.action == 'update'"
+              class="form-control-plaintext"
+              id="modPrezentare"
+            >
+              <option
+                *ngFor="let item of mods"
+                [selected]="item.tip == articol.modPrezentare.tip"
+              >
+                {{ item.tip }}
+              </option>
+            </select>
+            <input
+              *ngIf="this.action == 'view'"
+              [disabled]="this.action == 'view'"
+              type="text"
+              class="form-control-plaintext"
+              value="{{ articol.modPrezentare.tip }}"
+            />
+          </div></div
+      ></a>
+
+      <a class="list-group-item list-group-item-action">
+        <div class="form-group row">
+          <label for="an" class="col-sm-2 col-form-label"
+            ><strong>An:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.detalii.an }}"
+              class="form-control-plaintext"
+              id="an"
+            />
+          </div>
+        </div>
+      </a>
+
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="pagina" class="col-sm-2 col-form-label"
+            ><strong>Pagini:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.detalii.pagina }}"
+              class="form-control-plaintext"
+              id="pagina"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="volum" class="col-sm-2 col-form-label"
+            ><strong>Volum:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.detalii.volum }}"
+              class="form-control-plaintext"
+              id="volum"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="numar" class="col-sm-2 col-form-label"
+            ><strong>Numar:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.detalii.numar }}"
+              class="form-control-plaintext"
+              id="numar"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="wos" class="col-sm-2 col-form-label"
+            ><strong>WOS:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.wos }}"
+              class="form-control-plaintext"
+              id="wos"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="doi" class="col-sm-2 col-form-label"
+            ><strong>DOI:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.doi }}"
+              class="form-control-plaintext"
+              id="doi"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="factorImpact" class="col-sm-2 col-form-label"
+            ><strong>Factor impact:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.factorImpact }}"
+              class="form-control-plaintext"
+              id="factorImpact"
+            />
+          </div></div
+      ></a>
+      <a class="list-group-item list-group-item-action"
+        ><div class="form-group row">
+          <label for="jurnal" class="col-sm-2 col-form-label"
+            ><strong>Jurnal:</strong></label
+          >
+          <div class="col-sm-10">
+            <input
+              type="text"
+              [disabled]="this.action == 'view'"
+              value="{{ articol.jurnal }}"
+              class="form-control-plaintext"
+              id="jurnal"
+            />
+          </div></div
+      ></a>
+      <div class="grid-container">
+        <div class="grid-item">
+          <a
+            class="list-group-item list-group-item-action"
+            data-toggle="collapse"
+            data-target="#publication"
+            aria-expanded="true"
+            ><strong>Publicatie:</strong>
+          </a>
+          <div class="collapse navbar-collapse" id="publication">
+            <a class="list-group-item list-group-item-action"
+              ><div class="form-group row">
+                <label for="numePublicatie" class="col-sm-2 col-form-label"
+                  ><strong>Nume</strong></label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    [disabled]="this.action == 'view'"
+                    value="{{ articol.publicatie.nume }}"
+                    class="form-control-plaintext"
+                    id="numePublicatie"
+                  />
+                </div></div
+            ></a>
+            <a class="list-group-item list-group-item-action"
+              ><div class="form-group row">
+                <label for="tipPublicatie" class="col-sm-2 col-form-label"
+                  ><strong>Tip Publicatie:</strong></label
+                >
+                <div class="col-sm-10">
+                  <select
+                    *ngIf="this.action != 'view'"
+                    class="form-control-plaintext"
+                    id="tipPublicatie"
+                    (click)="temp()"
+                  >
+                    <option
+                      *ngFor="let item of pubs"
+                      [selected]="item.tip == articol.publicatie.tip"
+                    >
+                      {{ item.tip }}
+                    </option>
+                  </select>
+                  <input
+                    *ngIf="this.action == 'view'"
+                    [disabled]="this.action == 'view'"
+                    type="text"
+                    class="form-control-plaintext"
+                    value="{{ articol.modPrezentare.tip }}"
+                  />
+                </div></div
+            ></a>
+            <a class="list-group-item list-group-item-action"
+              ><div class="form-group row">
+                <label for="editorPublicatie" class="col-sm-2 col-form-label"
+                  ><strong>Editor:</strong></label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    [disabled]="this.action == 'view'"
+                    value="{{ articol.publicatie.editor }}"
+                    class="form-control-plaintext"
+                    id="editorPublicatie"
+                  />
+                </div></div
+            ></a>
+          </div>
+        </div>
+      </div>
+      <div class="grid-container">
+        <div class="grid-item">
+          <a
+            class="list-group-item list-group-item-action"
+            data-toggle="collapse"
+            data-target="#authors"
+            aria-expanded="true"
+            ><strong>Autori:</strong>
+          </a>
+          <div class="collapse navbar-collapse" id="authors">
+            <button
+              *ngIf="this.action == 'create' || this.action == 'update'"
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="addAuthor()"
+            >
+              Add new
+            </button>
+            <div class="container bg-light">
+              <div class="list-group">
+                <a
+                  class="list-group-item list-group-item-action"
+                  *ngFor="let autor of articol.autori; index as i"
+                >
+                  <div
+                    class="grid-container"
+                    style="grid-template-columns: auto auto"
+                  >
+                    <div class="grid-item">
+                      <select
+                        *ngIf="this.action != 'view' && autor.nume == 'nou'"
+                        class="form-control-plaintext"
+                        id="autor{{ i }}"
+                        (change)="isNewAuthor(i)"
+                      >
+                        <option selected></option>
+                        <option>Adauga nou</option>
+                        <option *ngFor="let autor of authorsRegistred">
+                          {{ autor.nume }} {{ autor.prenume }}
+                        </option>
+                      </select>
+                      <input
+                        style="width: 100%"
+                        *ngIf="autor.nume != 'nou'"
+                        [disabled]="autor.nume != ''"
+                        id="autor{{ i }}"
+                        type="text"
+                        value="{{ autor.nume }} {{ autor.prenume }}"
+                        class="form-control-plaintext"
+                      />
+                    </div>
+                    <div class="grid-item">
+                      <button
+                        style="width: 100%"
+                        *ngIf="this.action != 'view'"
+                        type="button"
+                        class="btn btn-outline-primary"
+                        (click)="removeAuthor(i)"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <a
+            class="list-group-item list-group-item-action"
+            data-toggle="collapse"
+            data-target="#citations"
+            aria-expanded="true"
+            ><strong>Citari:</strong>
+          </a>
+          <div class="collapse navbar-collapse" id="citations">
+            <button
+              *ngIf="this.action != 'view'"
+              type="button"
+              class="btn btn-outline-primary"
+              (click)="addCitations()"
+            >
+              Add new
+            </button>
+            <div class="list-group">
+              <a
+                class="list-group-item list-group-item-action"
+                *ngFor="let citare of articol.citari; index as i"
+              >
+                <div
+                  class="grid-container"
+                  style="grid-template-columns: auto auto"
+                >
+                  <div class="grid-item">
+                    <input
+                      style="width: 100%"
+                      id="citare{{ i }}"
+                      [disabled]="this.action == 'view'"
+                      type="text"
+                      value="{{ citare.nume }}"
+                      class="form-control-plaintext"
+                    />
+                  </div>
+                  <div class="grid-item">
+                    <button
+                      style="width: 100%"
+                      *ngIf="this.action != 'view'"
+                      type="button"
+                      class="btn btn-outline-primary"
+                      (click)="removeCitations(i)"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

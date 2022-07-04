@@ -1,0 +1,82 @@
+<div id="body" class="container">
+  <h1>Scientometry MTA</h1>
+  <h2>My Account</h2>
+
+  <form [formGroup]="myForm">
+    <div class="form-group">
+      <label for="usernameInput">Username</label>
+      <div class="inLine-elements">
+        <input
+          type="username"
+          class="form-control"
+          id="usernameInput"
+          aria-describedby="usernameHelp"
+          placeholder="Username"
+          formControlName="usernameInput"
+        />
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="updateUsername()"
+        >
+          Change
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Old Password</label>
+      <div class="inLine-elements">
+        <input
+          type="password"
+          class="form-control"
+          id="oldPasswordInput"
+          placeholder="Password"
+          formControlName="oldPasswordInput"
+        />
+        <button
+          type="button"
+          (click)="verifyPassword()"
+          class="btn btn-primary"
+        >
+          Check
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">New Password</label>
+      <div class="inLine-elements">
+        <input
+          type="password"
+          class="form-control"
+          id="newPasswordInput"
+          placeholder="Password"
+          formControlName="newPasswordInput"
+        />
+        <button
+          type="submit"
+          class="btn btn-primary"
+          id="passwordButton"
+          (click)="updatePassword()"
+        >
+          Change
+        </button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <div class="inLine-elements">
+        <input
+          type="email"
+          class="form-control"
+          id="emailInput"
+          aria-describedby="emailHelp"
+          placeholder="Please insert your email"
+          formControlName="emailInput"
+        />
+        <button type="submit" class="btn btn-primary" (click)="updateEmail()">
+          Change
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

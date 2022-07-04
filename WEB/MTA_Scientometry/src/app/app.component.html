@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <nav class="nav nav-pills navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" routerLink="/index">
+        <img
+          *ngIf="this.userType == 0"
+          src="../../../../assets/images/logo.png"
+          width="80"
+          height="80"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </a>
+      <a class="navbar-brand" routerLink="/home">
+        <img
+          *ngIf="this.userType != 0"
+          src="../../../../assets/images/logo.png"
+          width="80"
+          height="80"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </a>
+      <button
+        *ngIf="this.userType != 0"
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <a
+            *ngIf="this.userType != 0"
+            class="nav-link"
+            routerLink="/home"
+            routerLinkActive="active"
+            >Home</a
+          >
+          <li class="nav-item">
+            <a
+              *ngIf="this.userType != 0"
+              class="nav-link"
+              routerLink="/my-account"
+              routerLinkActive="active"
+              >My Account</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              *ngIf="this.userType != 0"
+              class="nav-link"
+              routerLink="/search"
+              routerLinkActive="active"
+              >Search</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              id="authorButton"
+              *ngIf="this.userType == 2 || this.userType == 3"
+              class="nav-link"
+              routerLink="/my-publications"
+              routerLinkActive="active"
+              >My Publications</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              id="adminButton"
+              *ngIf="this.userType == 3"
+              class="nav-link"
+              routerLink="/users-management"
+              routerLinkActive="active"
+              >Users Management</a
+            >
+          </li>
+          <li class="nav-item">
+            <a
+              id="adminButton"
+              *ngIf="this.userType != 0"
+              class="nav-link"
+              routerLink="/login"
+              routerLinkActive="active"
+              >Log out</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </body>
+</html>

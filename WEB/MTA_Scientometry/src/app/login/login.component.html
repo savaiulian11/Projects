@@ -1,0 +1,57 @@
+<div id="body" class="container">
+  <h1 class="titlu">Scientometry MTA</h1>
+  <h2>Login</h2>
+  <div class="container" id="subContainer">
+    <form [formGroup]="myForm">
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input
+          type="username"
+          class="form-control"
+          id="usernameInput"
+          placeholder="Username"
+          formControlName="username"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="passwordInput"
+          placeholder="Password"
+          formControlName="password"
+        />
+      </div>
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="rememberUser"
+          (click)="setCookie()"
+        />
+        <label class="form-check-label" for="rememberUser">Remember me</label>
+      </div>
+    </form>
+    <button
+      id="submitButton"
+      type="button"
+      class="btn btn-primary"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+    <a
+      class="links"
+      href="#"
+      routerLink="/forgot-account"
+      routerLinkActive="active"
+      >Forgot password?</a
+    >
+    <br />
+    <a class="links" href="#" routerLink="/register" routerLinkActive="active"
+      >New account</a
+    >
+  </div>
+</div>
